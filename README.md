@@ -1,5 +1,4 @@
 # GTA Guessr Versus Mode Cheats
-==========================
 
 **Warning: Cheating can ruin the game for others! 🚫**
 ---------------------------------------------
