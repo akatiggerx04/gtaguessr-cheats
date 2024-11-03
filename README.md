@@ -9,7 +9,7 @@ Please use this script responsibly and at your own risk. I do not condone cheati
 ## How to Run the Script?
 -------------------------
 
-![tutorial]("https://raw.githubusercontent.com/akatiggerx04/gtaguessr-cheats/refs/heads/main/tutorial.webp")
+![tutorial](https://github.com/akatiggerx04/gtaguessr-cheats/blob/main/tutorial.webp?raw=true)
 
 1. **Copy the script**: Copy the following code:
 ```js
