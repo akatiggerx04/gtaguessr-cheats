@@ -1,4 +1,5 @@
 let gameLocations = [];
+let isBusy = false;
 
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -58,6 +59,12 @@ function clickMapCenter() {
 }
 
 async function getVersusLocations() {
+  if (isBusy) {
+    return;
+  }
+
+  isBusy = true;
+
   const lobbyID = localStorage.getItem("lobbyId");
   const lobbyUserID = localStorage.getItem("lobbyUserId");
 
@@ -74,6 +81,8 @@ async function getVersusLocations() {
 
   response = await response.json();
   gameLocations = response?.locations ?? [];
+
+  isBusy = false;
 }
 
 async function getLocationByID(id) {
@@ -105,6 +114,12 @@ async function getLocationByID(id) {
 }
 
 async function setLocation(locationID) {
+  if (isBusy) {
+    return;
+  }
+
+  isBusy = true;
+
   changeCopyrightText("Finding the exact coordinates...");
   let exactLocation;
 
@@ -134,6 +149,8 @@ async function setLocation(locationID) {
 
   mapElement.style.filter = "grayscale(0) brightness(100%)";
   document.body.style.cursor = "inherit";
+
+  isBusy = false;
 
   changeCopyrightText(
     "Select the round number to locate the coordinates for it",
