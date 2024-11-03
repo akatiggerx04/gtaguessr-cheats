@@ -24,7 +24,7 @@ function clickMapCenter() {
   const screenWidth = window.innerWidth;
   const remainingWidth = screenWidth - panelRect.width;
   const x = panelRect.width + remainingWidth / 2;
-  const y = window.innerHeight / 2 - 13;
+  const y = window.innerHeight / 2 - 15;
   const clickEvent = new MouseEvent("click", {
     bubbles: true,
     cancelable: true,
@@ -88,9 +88,9 @@ async function getLocationByID(id) {
       locationId: gameLocations[id]?.locationId ?? 0,
       lat: `${getRandomInt(-7000, 7000)}.${getRandomInt(0, 99999)}`,
       lng: `${getRandomInt(7000, 7000)}.${getRandomInt(0, 99999)}`,
-      lobyId: lobbyID,
-      lobyUserId: lobbyUserID + "5",
-      game: "1",
+      lobyId: getRandomInt(10000000, 99999999).toString(),
+      lobyUserId: getRandomInt(555555, 999999).toString(),
+      game: getRandomInt(1, 5).toString(),
     }),
     headers: {
       "Content-Type": "application/json",
@@ -107,10 +107,18 @@ async function getLocationByID(id) {
 async function setLocation(locationID) {
   changeCopyrightText("Finding the exact coordinates...");
   let exactLocation;
+
+  const mapElement = document.querySelector('[data-control="Map"]');
+  mapElement.style.transition = "filter 200ms";
+  mapElement.style.filter = "grayscale(1) brightness(20%)";
+  document.body.style.cursor = "progress";
+
   try {
     exactLocation = await getLocationByID(locationID);
   } catch {
     alert("Error while finding exact location");
+    mapElement.style.filter = "grayscale(0) brightness(100%)";
+    document.body.style.cursor = "inherit";
     return;
   }
 
@@ -123,6 +131,9 @@ async function setLocation(locationID) {
     setTimeout(resolve, 2000);
   });
   clickMapCenter();
+
+  mapElement.style.filter = "grayscale(0) brightness(100%)";
+  document.body.style.cursor = "inherit";
 
   changeCopyrightText(
     "Select the round number to locate the coordinates for it",
@@ -165,6 +176,7 @@ async function getLocationsAndInitUI() {
   newElement.style.display = "grid";
   newElement.style.gridTemplateColumns = "repeat(5, 1fr)";
   newElement.style.columnGap = "5px";
+  newElement.style.marginBottom = "5px";
 
   const buttons = [
     { id: "setFirstLocation", onclick: "setLocation(0);", text: "1" },
@@ -196,6 +208,11 @@ async function activateCheats() {
     alert(
       "Unsupported website! Cheats only work on gtaguessr.com (Versus Mode)!",
     );
+    return;
+  }
+
+  if (!document.querySelector('[data-control="Map"]')) {
+    alert("Cheats can only be initiated while in game (Versus Mode)!");
     return;
   }
 
