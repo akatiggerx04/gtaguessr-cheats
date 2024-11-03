@@ -6,7 +6,6 @@
 Please use this script responsibly and at your own risk. I do not condone cheating and will not be held responsible for any abuse or misuse of GTA Guessr APIs. 🙅‍♂️
 
 ## How to Run the Script?
--------------------------
 
 ![tutorial](https://github.com/akatiggerx04/gtaguessr-cheats/blob/main/tutorial.webp?raw=true)
 
@@ -20,16 +19,13 @@ fetch('https://raw.githubusercontent.com/akatiggerx04/gtaguessr-cheats/refs/head
 5. **Paste the script**: Paste the copied code into the Console tab. If prompted, type "allow pasting" to enable pasting.
 
 **What's in the Script?**
--------------------------
 
 The script fetches the `cheat.js` file from the repository and executes it. You can view the contents of the script in the repository.
 
 **Disclaimer**
---------------
 
 I am not responsible for any consequences of using this script. Use it at your own risk and please don't ruin the game for others!
 
 **A Message to the GTA Guessr Dev(s)**
-------------------------------------
 
 Sorry for creating this script!
